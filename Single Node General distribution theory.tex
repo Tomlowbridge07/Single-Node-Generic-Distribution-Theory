@@ -113,12 +113,14 @@ Let us consider the difference in $c_{i,j}$'s , $c_{i,j}-c_{i-1,j}=a_{i}-a_{i}+j
 
 We can define $c_{i,j}=c \int_{i-1}^{i} \lambda F_{X}(x)+j f_{x}(x) dx$. We can say this is non-decreasing if $\lambda F_{X}(x)+ j f_{x}(x)$ is non-decreasing, i.e $\lambda f_{X}(x) + j f^{'}_{{X}}(x) \geq 0$.
 
-so trying to solve $\frac{\lambda}{j}f(x) \geq -f^{'}(x)$. In regions where the function is non-decreasing, this is most definitely true as $f^{'}(x) \geq 0$. In a region of $x$, say $R=[x_{1},x_{2}]$ where it is decreasing then we need to solve the inequality, $\frac{\lambda}{j}f(x) \geq |f^{'}(x)|$.
 
-Using Gronwell's inequality theorem we can get that the answer must be
-$f(x_{3})e^{-\frac{\lambda}{j}|x-x_{3}|} \leq f(x) \leq f(x_{3})e^{\frac{\lambda}{j}|x-x_{3}|}$ where $x_{3}$ is some point in the region $R$. As $f(x)$ is decreasing in these regions $f()$ So in these regions we must check this condition
+We can equivalently solve $\frac{\lambda}{j}f_{X}(x) \geq |f_{X}'(x)|$ for a function which is not strictly increasing. This is done by Gronwell's inequality theorem to get use $f(x_{0})e^{-\frac{\lambda}{j}|x-x_{0}|} \leq f(x) \leq f(x_{0})e^{\frac{\lambda}{j}|x-x_{0}|}$ for some $x_{0}$ in the support of $f_{X}$. This is equivalent to say that the function is not increasing/decreasing exponentially.
 
-As we are dealing with a function of $f_{X}(x)$ which is not non-decreasing. 
+If we only consider decreasing regions of $f_{X}$ can we just check those, well lets say that in the regions $[a_{i},b_{i}]$ for $i \in {1,...,n}$ for some $n$. The function is decreasing then we could apply the same idea of Gronwell's inequality and get $f(p)e^{-\frac{\lambda}{j}|x-p|} \leq f(x) \leq f(p)e^{\frac{\lambda}{j}|x-p|}$ for some chosen $p \in [a_{i},b_{i}]$ (all choices are valid, easy choice is $p=a_{i}$) for all $i \in n$.
+
+Then this allows us to say that in the decreasing regions of $f_{X}$ the equation still holds, and in the other regions it is increasing so the equation holds. Hence it holds.
+
+So we really only need the decreasing regions to be monitored for exponential decay, if they decrease too fast we can be in trouble.
   
 
 
