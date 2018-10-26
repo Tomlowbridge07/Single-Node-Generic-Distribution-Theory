@@ -121,8 +121,25 @@ If we only consider decreasing regions of $f_{X}$ can we just check those, well 
 Then this allows us to say that in the decreasing regions of $f_{X}$ the equation still holds, and in the other regions it is increasing so the equation holds. Hence it holds.
 
 So we really only need the decreasing regions to be monitored for exponential decay, if they decrease too fast we can be in trouble.
-  
 
+\Section{Alternative explanation of their index}
+We will first provide an alternative way to arrive at the index provided by the paper. Consider looking at the states. $s=1,2,...,B+1$, we can consider waiting $k$ time periods costing us $c_{s-1}+c_{s}+...+c_{s+k}$, then renewing, where $c_{i}=c \lambda \int_{i}^{i+1} F_{X}(t) dt$ is an increasing function. Comparing all strategies and then renewing to get $g$, the equilibrium value, for the amount of time over which we are comparing (which is up till the maximum).
+
+Therefore from $s$ we will renew in $k$ if $g \leq c_{s+k}$, so renew now if $g \leq c_{s}$. That means to get the index for the state $s$, we need to work out $g(w)=\frac{w+c_{0}+...+c_{s-1}}{s}$, moving this into our bound gives
+
+$$w \leq s c_{s} - \sum\limits_{i=0}^{s-1} c_{i}$$
+
+which with the integrations is exactly the index found before.
+
+\Section{Introducing some observable parameter}
+Let us consider having the previous set up but when the state is renewed a second parameter $v$ affects the cost function. That is to say each transnational cost has a second parameter, we will call the cost to transition from state $(s,v)$ to state $()$
+  
+  
+\Section{Continuous version of the set up}
+
+We can form a continuous version of the problem. Let us consider a problem where the $s$ state is now continuous and similarly to the theory we can limit $1 \leq s \leq X_{max}+1$, we can also introduce a time to visit the node, instead of taking unit time to arrive at the node once the decision is made we can say it takes, $r$, the delay.
+
+Then our costs can be wrote as $C_{s}=$
 
 
 %End of main part of document
