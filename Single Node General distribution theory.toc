@@ -1,3 +1,8 @@
 \contentsline {section}{\numberline {1}Introduction to Problem}{1}
+\contentsline {section}{\numberline {2}Alternative explanation of their index}{2}
+\contentsline {section}{\numberline {3}Introducing some observable parameter}{2}
+\contentsline {section}{\numberline {4}Locally-Observable random attackers}{3}
+\contentsline {section}{\numberline {5}Continuous version of the old set up}{3}
+\contentsline {section}{\numberline {6}Continuous (s,v) set up}{4}
 \contentsline {section}{Appendices}{i}
 \contentsline {section}{\numberline {A}First appendix section}{i}
