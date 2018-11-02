@@ -49,6 +49,9 @@
 \theoremstyle{definition}
 \newtheorem*{note}{Note}
 
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
 \DeclareFloatingEnvironment[fileext=los,
     listname={List of Example Figures},
     name=Example Figure,
@@ -176,9 +179,57 @@ For uniform cost density (a non-decreasing density), we can work out that to ren
 \section{Continuous (s,v) set up}
 In our observable parameter set up, for each continuous $v$ at time $s$ we have a cost density $c(s,v)$ and similarly a cumulatively cost $C(s,v)=\int_{0}^{s+r} c(u,v) du$, again where $r$ is the return speed to that single node.
 
-Again in state $s$, with an increasing cost density, we can wait $k$ time, we will renew now if $g \leq \lim\limits_{i \rightarrow \infty} \frac{\int_{s+r}^{s+r+i} c(u,v) du}{i}$
+Again in state $(s,v)$, with an increasing cost density, we can wait $k$ time, we will renew now if $g \leq \lim\limits_{k \rightarrow \infty} \frac{\int_{s+r}^{s+r+k} c(u,v) du}{k} \equiv g_{s,v}$.
 
+Again to work out $g(\omega)$ we need to know the full strategy at this particular limit $\hat{S}(i)= \begin{cases}
+s \text{ when } i=v \\
+\argmax\limits_{t \in [0,S_{max}]} \{g_{t,i} | g_{t,i} \leq g_{s,v} \} \text{ when } i \neq v
+\end{cases}$.
+
+We may wish to enforce continuity of this renewal function, however i am not sure doing this will gain anything. We will also note that we may redefine this function as
+
+$$\hat{S}(i)=\arg\limits_{t} \left\{\lim\limits_{k \rightarrow 0^{+}} \frac{\int_{s+r}^{s+r+k} c(u,v) du - \int_{t+r}^{t+r+k} c(u,i) du}{k} =0  \right\}$$
+
+due to the solving of the second part of the definition, we still need to assume the given $s$ value for $i=v$.
+
+This gives a function which determines a renewal plan and therefore allows us to calculate $g(\omega)=\frac{\omega + \alpha}{\beta}$ where $\alpha= \int_{v_{min}}^{v_{max}} f_{v}(x)C(\hat{S}(x),x) dx$ and $\beta=\int_{v_{min}}^{v_{max}} f_{v}(x)\hat{S}(x) dx$.
+
+Then again we will end up with the bound that $\omega \leq \beta g_{s,v} - \alpha$.
+
+
+\textbf{Example 1.}
+Consider a uniform cost density of $1$, then we expect the index to be the same at all points (as they look identical). Well due to this $\hat{S}(i) = s \forall i$. Therefore $g(\omega)=\frac{\omega + s}{s} \leq 1$ so $w \leq 0$. This index is constant and makes sense, as renewing gives us no benefit.
+
+
+\textbf{Example 2.}
+Consider the cost density as the pdf of some distribution, so our set up aligns with the patrol game. Let us say $X \sim U[0,2.7]$ and let us assume $V \sim U[1,2]$ with our costs scaled by this (by a scaling of increased attack rate $\lambda$), then $\lambda v$ is our cost multiplier and $r=1$, so our nodes take one time unit to visit. Then the cost density is the cdf of the distribution times lambda rate, so $c(s,v)= \lambda v F_{x}(s)$. overall cost So to determine $\hat{S}$, we just need solve the equation
+
+$\lim\limits_{k \rightarrow 0^{+}} \frac{\int_{s+r}^{s+r+k} \lambda v \frac{u}{2.7} \ du - \int_{t+r}^{t+r+k} \lambda i \frac{u}{2.7} du}{k} =0 \iff t=\frac{v}{i} (s+r) -r$
  
+We note that L`hoptials rule may help to calculate such limits. 
+
+so $\hat{S}(i)=\frac{v}{i} (s+r) -r$
+
+and so our index is $W(s,v)=\frac{\lambda v (s+r) (\ln (2) v (s+r) -2r)}{5.4}$.
+
+Can we consider a `end state' as we were using before, as when consider $\hat{S}$ for $(2.7,2)$ when $r=0$ we are at the end of this and as the cost density is only increasing in $v$ we expect $\hat{S}$ to be more than 2.7 for every other $i \in V$. Does this cause a problem, one would think not as the cost density is still valid past the value of $2.7$.
+
+\section{Particular examples of (s,v) adaptations}
+\begin{itemize}
+\item $v$ affects the arrival rate for the next stream
+\item $v$ affects the cost, $c$ (Really the same as above, cost and arrival rate increases can be seen as one another in the expectation)
+\item  
+\end{itemize}
+
+\section{Movement in the parametrized dimension}
+We may wish to consider a process which when left to it, may drift into different parameter states. Let us consider the discrete time epoch theory, we can consider that in a state $(s,v)$, there is a transition probability to $(s+1,i)$ for $i \in V$ with some probability $p_{(s,v) \rightarrow (s+1,i)}$.
+
+It is intuitive that if this probability only takes us into worse $i \in V$ then we have no real issue with our theory. That is if we have an increasing cost density in $v$ as well as in $s$ and parametrized states can only increase, then we have no issue, as the cost can only get worse. This allows us to follow the pattern of considering the immediate future for $g$'s bound.
+
+The question is what is $g$'s bound now, I believe intutatively it will be the expected immediate cost.
+
+Let us try to formalize this.
+
 %End of main part of document
 \bibliography{mybib}
 

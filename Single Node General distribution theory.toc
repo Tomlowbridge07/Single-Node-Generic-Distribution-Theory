@@ -4,5 +4,7 @@
 \contentsline {section}{\numberline {4}Locally-Observable random attackers}{3}
 \contentsline {section}{\numberline {5}Continuous version of the old set up}{3}
 \contentsline {section}{\numberline {6}Continuous (s,v) set up}{4}
+\contentsline {section}{\numberline {7}Particular examples of (s,v) adaptations}{5}
+\contentsline {section}{\numberline {8}Movement in the parametrized dimension}{5}
 \contentsline {section}{Appendices}{i}
 \contentsline {section}{\numberline {A}First appendix section}{i}
