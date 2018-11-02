@@ -218,7 +218,7 @@ Can we consider a `end state' as we were using before, as when consider $\hat{S}
 \begin{itemize}
 \item $v$ affects the arrival rate for the next stream
 \item $v$ affects the cost, $c$ (Really the same as above, cost and arrival rate increases can be seen as one another in the expectation)
-\item  
+\item $v$ denotes the number of `local observations'
 \end{itemize}
 
 \section{Movement in the parametrized dimension}
@@ -226,10 +226,34 @@ We may wish to consider a process which when left to it, may drift into differen
 
 It is intuitive that if this probability only takes us into worse $i \in V$ then we have no real issue with our theory. That is if we have an increasing cost density in $v$ as well as in $s$ and parametrized states can only increase, then we have no issue, as the cost can only get worse. This allows us to follow the pattern of considering the immediate future for $g$'s bound.
 
-The question is what is $g$'s bound now, I believe intutatively it will be the expected immediate cost.
+The question is what is $g$'s bound now, I believe intuitively it will be the expected immediate cost, as will consider the action of wait and progress costing an amount multiplied by the transitional probability. We may think there is an issue as the end location may not follow the pattern of renewing immediately, however limiting ourselves to transitions only going to `worse' (states with a higher $g_{s,v}$) we can guarantee our pattern still holds.
 
-Let us try to formalize this.
+However if transitions can move us to better states this is not necessarily true. What do we do in this situation, well it is manually possible to calculate all the waiting decisions (under expectation of future) and pick the best.
 
+Assuming our cost density is still increasing in $s$ and $v$ then moving to lower $i < v$ does not get us any solid property.
+
+However if we can say all future waiting decisions (expect wait 0) are (under expectation) worse than wait 0 ,then we can still state our theory as before and use our $g \leq g_{s,v}$ idea. So what we need for this to be true, We need the expected future cost to be, on average, worse than the initial cost.
+
+\section{Movement in the only worsening parameter direction}
+
+Let us now assume, upon the choose to not visit the system in state $(s,v)$ that it transitions to the state $(s+1,i)$ with probability $p_{(s,v) \rightarrow (s+1,i)}$, with $p_{(s,v) \rightarrow (s+1,i)}=0$ for $i < v$.
+
+Then we can again use our theory, now $g \leq g_{s,v}$ exactly as before and we can still get the same $\hat{S}$ as before, now what will change is the question ?
+
+Well the $g(\omega)$ will need to be worked out by paths and not simply by looking at the lines. We still need to work out the expected cost and the expected length per renewal, however this is a little more complicated, but not unachievable.
+
+To do so it will be better to convert out $\hat{S}$ into a $\hat{V}$ rule in which we are dealing with rows, renewing if $v \geq \hat{v}_{i}$. We can only perform such a conservation if $\hat{S}$ is decreasing, we can do it without this but it is more notationally heavy, as each element is a set of $v$ we will renew at.
+
+To make the conversion we will use the rule that $\hat{v}_{i}= \left| \{ \hat{s}_{j} \, | \, \hat{s}_{j} \leq i , \hat{s}_{j} \in \hat{S} \}\right|+1$.
+
+Using this it possible to write the new expected cost, $\alpha=\sum\limits_{V} P(V=v) (C_{0,v}+ \sum\limits_{j=2}^{B+1} \sum\limits_{i \leq \hat{v}_{j}} P_{1,v}(j,i) C_{j-1,i})$, and expected length $\beta=\sum\limits_{V} P(V=v) (1+ \sum\limits_{j=2}^{B+1} \sum\limits_{i \leq \hat{v}_{j}} P_{1,v}(j,i))$. Where $P_{1,v}(j,i)$ is the probability of being in state $(j,i)$ after $j-1$ transitions.
+
+\textbf{Example 1.}
+If we use $p_{(s,v) \rightarrow (s+1,v+1)}=1$, except when $v=v_{max}$ in which case $p_{(s,v_{max}) \rightarrow (s+1,v_{max})}=1$, then all the transitional movements are deterministic and $P_{1,v}(j,i)=1 \iff i=v+j-1$ and $0$ otherwise. This means our $\alpha=\sum\limits_{V} P(V=v) (C_{0,v}+ \sum\limits_{i=2}^{B+1} \mathbb{I}(v+i-1 < \hat{v}_{j})C_{i-1,v+i-1})$ and $\beta= \sum\limits_{V} P(V=v) (1+ \sum\limits_{i=2}^{B+1} \mathbb{I}(v+i-1 < \hat{v}_{j}))$
+
+
+\textbf{Example 2.}
+Consider for some $p \in [0,1]$ $p_{(s,v) \rightarrow (s+1,v)}=1-p$ and $p_{(s,v) \rightarrow (s+1,v+1)}=p$
 %End of main part of document
 \bibliography{mybib}
 

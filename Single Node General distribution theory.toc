@@ -6,5 +6,6 @@
 \contentsline {section}{\numberline {6}Continuous (s,v) set up}{4}
 \contentsline {section}{\numberline {7}Particular examples of (s,v) adaptations}{5}
 \contentsline {section}{\numberline {8}Movement in the parametrized dimension}{5}
+\contentsline {section}{\numberline {9}Movement in the only worsening parameter direction}{6}
 \contentsline {section}{Appendices}{i}
 \contentsline {section}{\numberline {A}First appendix section}{i}
